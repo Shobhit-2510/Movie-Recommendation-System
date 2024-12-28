@@ -6,8 +6,8 @@ import streamlit as st
 # importing movies data
 movies_data = pd.read_csv("movies.csv")
 
-# Load the saved similarity matrix
-with open('similarity.pkl', 'rb') as f:
+# Load the saved similiarity matrix
+with open('similiarity.pkl', 'rb') as f:
     loaded_similarity = pickle.load(f)
     
 def movie_recommendation(movie_name):
