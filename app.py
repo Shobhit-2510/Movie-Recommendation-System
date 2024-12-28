@@ -8,7 +8,7 @@ movies_data = pd.read_csv("movies.csv")
 
 # Load the saved similiarity matrix
 with open('similiarity.pkl', 'rb') as f:
-    loaded_similarity = pickle.load(f)
+    loaded_similiarity = pickle.load(f)
     
 def movie_recommendation(movie_name):
     
@@ -16,10 +16,10 @@ def movie_recommendation(movie_name):
     find_close_match = dl.get_close_matches(movie_name, list_of_all_titles)
     close_match = find_close_match[0]
     index_of_the_movie = movies_data[movies_data.title == close_match]['index'].values[0]
-    similarity_score = list(enumerate(loaded_similarity[index_of_the_movie]))
-    sorted_similar_movies = sorted(similarity_score, key = lambda x:x[1], reverse = True)
+    similiarity_score = list(enumerate(loaded_similiarity[index_of_the_movie]))
+    sorted_similiar_movies = sorted(similiarity_score, key = lambda x:x[1], reverse = True)
 
-    return sorted_similar_movies
+    return sorted_similiar_movies
 
 def main():
     st.title('Movie Recommendation System')
@@ -27,9 +27,9 @@ def main():
     movie_name = st.text_input('Enter the movie name')
     
     if st.button('Recommend'):
-        sorted_similar_movies = movie_recommendation(movie_name)
+        sorted_similiar_movies = movie_recommendation(movie_name)
         i = 1
-        for movie in sorted_similar_movies:
+        for movie in sorted_similiar_movies:
             index = movie[0]
             title_from_index = movies_data[movies_data.index==index]['title'].values[0]
             if (i<31):
