@@ -4,7 +4,7 @@ import difflib as dl
 import streamlit as st
 
 # importing movies data
-movies_data = pd.read_csv("movies.csv")
+movies_data = pd.read_csv("data/movies.csv")
 
 # Load the saved similiarity matrix
 with open('similiarity.pkl', 'rb') as f:
